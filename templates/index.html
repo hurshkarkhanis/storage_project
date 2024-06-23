@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Upload and Display Photos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Upload Photos:</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="photos">Select Photos:</label>
+                <input type="file" class="form-control-file" id="photos" name="photos[]" multiple>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+        <hr>
+        {% for photo in photos %}
+        <div class="mb-4">
+            <h2>Uploaded Photo:</h2>
+            <img src="{{ url_for('uploaded_file', filename=photo) }}" class="img-fluid" style="max-width: 100%;">
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="description" placeholder="Description">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="size" placeholder="Size">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="notes" placeholder="Notes">
+                </div>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
